@@ -16,6 +16,13 @@
       %>
         <li> <%=x%></li>
        <%} %>
+       
+       <%
+         Integer scount=(Integer)request.getAttribute("scount");
+         Integer acount=(Integer)request.getAttribute("acount");
+       %>
+       <h4>Number of requests in this session : <%=scount %></h4>
+       <h4>Number of requests for this application : <%=acount %></h4>
   </ul>
 </body>
 </html>

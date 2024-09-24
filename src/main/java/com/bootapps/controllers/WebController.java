@@ -27,7 +27,7 @@ public class WebController {
 		applicationScoped.setCounter();
 		map.addAttribute("names",dservice.getNames());
 		map.addAttribute("scount",sessionscoped.getCounter());
-		map.addAttribute("ascoped",applicationScoped.getCounter());
+		map.addAttribute("acount",applicationScoped.getCounter());
 		return "home";
 	}
 }
