@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.bootapps.entitities.Product;
 import com.bootapps.repos.ProductRepository;
+import com.bootapps.utilities.RecordAlreadyExistsException;
 
 @Service
 public class ProductService {
@@ -17,5 +18,15 @@ public class ProductService {
 	
 	public List<Product> getProducts() {
 		return prepo.findAll();
+	}
+	
+	public void  addProduct(Product product) throws RecordAlreadyExistsException {
+		Product p=prepo.findByProductNo(product.getProductno());
+		if (p!=null)
+			throw new RecordAlreadyExistsException();
+		else
+		{
+			prepo.save(product);
+		}
 	}
 }
