@@ -44,4 +44,17 @@ public class ProductService {
 			throw new RecordNotFoundException();
 		prepo.delete(p);
 	}
+	
+	public void updateProduct(Integer productno,Product product)  throws RecordNotFoundException{
+		Product p=prepo.findByProductno(productno);
+		if(p==null)
+			throw new RecordNotFoundException();
+		
+		product.setProductno(productno);
+		product.setName(product.getName()==null?p.getName():product.getName());
+		product.setCategory(product.getCategory()==null?p.getCategory():product.getCategory());
+		product.setPrice(product.getPrice()==null?p.getPrice():product.getPrice());
+		
+		prepo.save(product);
+	}
 }

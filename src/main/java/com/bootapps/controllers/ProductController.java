@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bootapps.entitities.Product;
@@ -49,6 +50,21 @@ public class ProductController {
 		try {
 			pservice.deleteProduct(productno);
 			return new ResponseEntity<>("Record Deleted",HttpStatus.OK);
+		}
+		catch(RecordNotFoundException e) {
+			return new ResponseEntity<>("No record Exists with product no",HttpStatus.BAD_REQUEST);
+		}
+		catch(Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@RequestMapping(value="/{productno}",method = {RequestMethod.PUT,RequestMethod.PATCH})
+	public ResponseEntity<String> updateProduct(@PathVariable Integer productno,@RequestBody Product p)
+	{
+		try {
+			pservice.updateProduct(productno,p);
+			return new ResponseEntity<>("Record update",HttpStatus.OK);
 		}
 		catch(RecordNotFoundException e) {
 			return new ResponseEntity<>("No record Exists with product no",HttpStatus.BAD_REQUEST);
