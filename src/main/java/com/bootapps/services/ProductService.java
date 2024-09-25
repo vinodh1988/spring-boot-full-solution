@@ -21,7 +21,7 @@ public class ProductService {
 	}
 	
 	public void  addProduct(Product product) throws RecordAlreadyExistsException {
-		Product p=prepo.findByProductNo(product.getProductno());
+		Product p=prepo.findByProductno(product.getProductno());
 		if (p!=null)
 			throw new RecordAlreadyExistsException();
 		else
