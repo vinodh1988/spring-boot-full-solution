@@ -1,5 +1,9 @@
 package com.bootapps.repos;
 
-public interface ProductRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.bootapps.entitities.Product;
+
+public interface ProductRepository extends JpaRepository<Product, Long>{
 
 }
