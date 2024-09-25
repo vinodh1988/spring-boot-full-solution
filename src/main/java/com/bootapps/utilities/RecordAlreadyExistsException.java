@@ -2,7 +2,6 @@ package com.bootapps.utilities;
 
 public class RecordAlreadyExistsException extends Exception {
 	
-	
 	private static final long serialVersionUID = 1L;
 
 	@Override
