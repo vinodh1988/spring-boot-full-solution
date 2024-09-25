@@ -20,6 +20,10 @@ public class ProductService {
 		return prepo.findAll();
 	}
 	
+	public Product getProduct(Integer productno) {
+		return prepo.findByProductno(productno);
+	}
+	
 	public void  addProduct(Product product) throws RecordAlreadyExistsException {
 		Product p=prepo.findByProductno(product.getProductno());
 		if (p!=null)
