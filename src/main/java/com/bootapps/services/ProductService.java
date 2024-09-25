@@ -37,4 +37,11 @@ public class ProductService {
 			prepo.save(product); //insert or update (we defined it only for insertion)
 		}
 	}
+	
+	public void deleteProduct(Integer productno)  throws RecordNotFoundException{
+		Product p=prepo.findByProductno(productno);
+		if(p==null)
+			throw new RecordNotFoundException();
+		prepo.delete(p);
+	}
 }
