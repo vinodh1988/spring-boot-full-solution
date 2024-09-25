@@ -26,7 +26,7 @@ public class ProductService {
 			throw new RecordAlreadyExistsException();
 		else
 		{
-			prepo.save(product);
+			prepo.save(product); //insert or update (we defined it only for insertion)
 		}
 	}
 }
