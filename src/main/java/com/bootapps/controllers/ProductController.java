@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bootapps.entitities.Product;
@@ -19,16 +20,17 @@ import com.bootapps.services.ProductService;
 import com.bootapps.utilities.RecordAlreadyExistsException;
 import com.bootapps.utilities.RecordNotFoundException;
 
+
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
 	@Autowired
 	private ProductService pservice;
 	
-	@GetMapping("")
+	/*@GetMapping("")
 	public List<Product> getProducts(){
 		return pservice.getProducts();
-	}
+	}*/
 	
 	@GetMapping("/{productno}")
 	public ResponseEntity<Object> getProduct(@PathVariable Integer productno)
@@ -42,8 +44,22 @@ public class ProductController {
 		catch(Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+		
+
 	}
-	
+   
+	@GetMapping("")
+	public ResponseEntity<List<Product>> getProduct(@RequestParam(required = false) Integer min,@RequestParam(required = false) Integer max) {
+		   try {
+			   if(min==null && max==null)
+				   return new ResponseEntity<>(pservice.getProducts(),HttpStatus.OK);
+			  return new ResponseEntity<>(pservice.getProducts(min, max),HttpStatus.OK);	
+		   }
+		  
+		   catch(Exception e) {
+			   return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		   }
+		}
 	@DeleteMapping("/{productno}")
 	public ResponseEntity<String> deleteProduct(@PathVariable Integer productno)
 	{
