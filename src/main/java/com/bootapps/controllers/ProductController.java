@@ -53,6 +53,10 @@ public class ProductController {
 		   try {
 			   if(min==null && max==null)
 				   return new ResponseEntity<>(pservice.getProducts(),HttpStatus.OK);
+			   else if(min==null)
+				   min=0;
+			   else if(max==null)
+				   max=Integer.MAX_VALUE;
 			  return new ResponseEntity<>(pservice.getProducts(min, max),HttpStatus.OK);	
 		   }
 		  
