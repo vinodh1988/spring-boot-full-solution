@@ -20,6 +20,10 @@ import com.bootapps.services.ProductService;
 import com.bootapps.utilities.RecordAlreadyExistsException;
 import com.bootapps.utilities.RecordNotFoundException;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+
 
 @RestController
 @RequestMapping("/api/products")
@@ -31,6 +35,18 @@ public class ProductController {
 	public List<Product> getProducts(){
 		return pservice.getProducts();
 	}*/
+	
+	@Operation(
+			   summary="Get Product by product no",
+			   description="Get Product by passing product number "
+			)
+			@ApiResponses(
+				 value = {
+						 @ApiResponse(responseCode="200", description="Users are found"),
+						 @ApiResponse(responseCode="400", description="if No user exists with the id"),
+						 @ApiResponse(responseCode="500", description="Server related error")
+				 }	
+				)
 	
 	@GetMapping("/{productno}")
 	public ResponseEntity<Object> getProduct(@PathVariable Integer productno)
