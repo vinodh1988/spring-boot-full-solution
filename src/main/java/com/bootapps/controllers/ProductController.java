@@ -49,17 +49,12 @@ public class ProductController {
 				)
 	
 	@GetMapping("/{productno}")
-	public ResponseEntity<Object> getProduct(@PathVariable Integer productno)
+	public ResponseEntity<Object> getProduct(@PathVariable Integer productno) throws RecordNotFoundException
 	{
-		try {
+	
 			return new ResponseEntity<>(pservice.getProduct(productno),HttpStatus.OK);
-		}
-		catch(RecordNotFoundException e) {
-			return new ResponseEntity<>("No record Exists with product no",HttpStatus.BAD_REQUEST);
-		}
-		catch(Exception e) {
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+		
+	
 		
 
 	}
