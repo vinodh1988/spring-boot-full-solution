@@ -9,14 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bootapps.entitities.Author;
 import com.bootapps.repos.AuthorRepository;
+import com.bootapps.services.AuthorService;
 
 @RestController
 @RequestMapping("/api/authors")
 public class AuthorController {
 @Autowired
-private AuthorRepository arepo;
+private AuthorService aservice;
 	 @GetMapping("")
 	 public List<Author> getAuthors(){
-		 return arepo.findAll();
+		 return aservice.getAuthors();
 	 }
 }
