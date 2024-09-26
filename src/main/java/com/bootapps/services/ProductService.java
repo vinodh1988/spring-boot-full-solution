@@ -21,6 +21,11 @@ public class ProductService {
 		return prepo.findAll();
 	}
 	
+	
+	public List<Product> getProducts(Integer min,Integer max) {
+		return prepo.findByPriceRange(min, max);
+	}
+	
 	public Product getProduct(Integer productno)  throws RecordNotFoundException{
 		Product p=prepo.findByProductno(productno);
 		if(p==null)
