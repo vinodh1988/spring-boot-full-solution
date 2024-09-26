@@ -23,6 +23,7 @@ public class Book {
 	@Column
 	private String price;
 	
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "authorno")
     @JsonIgnore
