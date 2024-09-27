@@ -24,7 +24,7 @@ import com.bootapps.security.JwtTokenProvider;
 import com.bootapps.services.UserService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*")	
+	
 public class AuthenticationController {
 
     @Autowired
